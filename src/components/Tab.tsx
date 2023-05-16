@@ -55,10 +55,10 @@ export const Tab: FC<INavProps> = () => {
   return (
     <div className='main__grid'>
       {currentPage()}
-      <Footer onChangeTab={handleChangeMenuId} />
     </div>
   );
 }
+//<Footer onChangeTab={handleChangeMenuId} />
 
 
 // class Tab extends React.Component<INavProps, INavState> {

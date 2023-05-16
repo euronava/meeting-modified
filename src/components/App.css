@@ -44,6 +44,17 @@
   grid-template-columns: repeat(2, 250px);
 }
 
+.container {
+  width: 40%;
+  height: 560px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px -4px 41px 8px rgba(0,0,0,0.1);
+  margin: auto;
+  align-items: center;
+}
+
 .option__card {
   display: flex;
   flex-direction: column; 

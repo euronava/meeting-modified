@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import * as microsoftTeams from '@microsoft/teams-js';
 import { Options } from './Options';
 import { FrameContexts } from '@microsoft/teams-js';
+import { Tab } from './Tab';
 
 // let videoControllerCallback: microsoftTeams.media.VideoControllerCallback = {
 //   onRecordingStarted() {
@@ -26,42 +27,41 @@ import { FrameContexts } from '@microsoft/teams-js';
 
 export const MeetingSample = () => {
   const [context, setContext] = React.useState<microsoftTeams.FrameContexts>(FrameContexts.content);
-  const imageElement = React.useRef<HTMLImageElement>(null);
   
   useEffect(() => {
     const mediaRequest = setTimeout(() => { 
-      let mediaInput: microsoftTeams.media.MediaInputs = {
-        mediaType: microsoftTeams.media.MediaType.Audio,
-        maxMediaCount: 10,    
-      };
-      microsoftTeams.media.selectMedia(mediaInput, (error: microsoftTeams.SdkError, attachments: microsoftTeams.media.Media[]) => {
-        console.log({ error, attachments })
-          if (error) {
-              if (error.message) {
-                  alert(" ErrorCode: " + error.errorCode + error.message);
-              } else {
-                  alert(" ErrorCode: " + error.errorCode);
-              }
-          }
-      // If you want to directly use the audio file (for smaller file sizes (~4MB))    if (attachments) {
-      let audioResult = attachments[0];
-      var videoElement = document.createElement("video");
-      videoElement.setAttribute("src", ("data:" + audioResult.mimeType + ";base64," + audioResult.preview));
-        audioResult.getMedia((error: microsoftTeams.SdkError, blob: Blob) => {
-        if (blob) {
-            if (blob.type.includes("video")) {
-                videoElement.setAttribute("src", URL.createObjectURL(blob));
-            }
-        }
-        if (error) {
-            if (error.message) {
-                alert(" ErrorCode: " + error.errorCode + error.message);
-            } else {
-                alert(" ErrorCode: " + error.errorCode);
-            }
-        }
-      });
-    });
+      // let mediaInput: microsoftTeams.media.MediaInputs = {
+      //   mediaType: microsoftTeams.media.MediaType.Audio,
+      //   maxMediaCount: 10,    
+      // };
+    //   microsoftTeams.media.selectMedia(mediaInput, (error: microsoftTeams.SdkError, attachments: microsoftTeams.media.Media[]) => {
+    //     console.log({ error, attachments })
+    //       if (error) {
+    //           if (error.message) {
+    //               alert(" ErrorCode: " + error.errorCode + error.message);
+    //           } else {
+    //               alert(" ErrorCode: " + error.errorCode);
+    //           }
+    //       }
+    //   // If you want to directly use the audio file (for smaller file sizes (~4MB))    if (attachments) {
+    //   let audioResult = attachments[0];
+    //   var videoElement = document.createElement("video");
+    //   videoElement.setAttribute("src", ("data:" + audioResult.mimeType + ";base64," + audioResult.preview));
+    //     audioResult.getMedia((error: microsoftTeams.SdkError, blob: Blob) => {
+    //     if (blob) {
+    //         if (blob.type.includes("video")) {
+    //             videoElement.setAttribute("src", URL.createObjectURL(blob));
+    //         }
+    //     }
+    //     if (error) {
+    //         if (error.message) {
+    //             alert(" ErrorCode: " + error.errorCode + error.message);
+    //         } else {
+    //             alert(" ErrorCode: " + error.errorCode);
+    //         }
+    //     }
+    //   });
+    // });
     }, 3000);
 
     return () => {
@@ -82,15 +82,11 @@ export const MeetingSample = () => {
       padding: '10px',
     }}>
       {
-        context === FrameContexts.content ? (<div>
-          <h1>Meeting teams sample</h1>
-          <p>Meeting teams sample content</p>
-          <div>
-          </div>
-          {/* <img ref={imageElement} /> */}
-        </div>) : (<div>
+        context === FrameContexts.content ? (
+          <Tab />
+        ) : (<div>
         <p>Please select the option:</p>
-        <Options />
+          <Options />
       </div>)
       }
     </div>

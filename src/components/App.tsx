@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Tab } from "./Tab";
 import { MeetingConfig } from './MeetingConfig';
 import { MeetingSample } from './MeetingSample';
+import { Transcript } from '../pages/Transcript';
 /**
  * The main app which handles the initialization and routing
  * of the app.
@@ -15,14 +16,13 @@ import { MeetingSample } from './MeetingSample';
 function App() {
   // Initialize the Microsoft Teams SDK
   microsoftTeams.app.initialize().then(() => {
-    if (microsoftTeams.pages.config.isSupported()){
+    if (window.location.href.includes('/meeting') && microsoftTeams.pages.config.isSupported()){
     microsoftTeams.pages.config.registerOnSaveHandler((saveEvent) => {
       microsoftTeams.pages.config.setConfig({
         entityId: 'caption-tab',
         contentUrl: window.location.origin + "/meeting/sample",
         suggestedDisplayName: "Meeting Test Tab",
     });
-      console.log("Meeting", saveEvent);
       saveEvent.notifySuccess();
   });
     }
@@ -33,6 +33,7 @@ function App() {
   return (
     <Router>
       <Route exact path="/tab" component={Tab} />
+      <Route exact path="/transcript" component={Transcript} />
       <Route exact path="/meeting" component={MeetingConfig} />
       <Route exact path="/meeting/sample" component={MeetingSample} />
     </Router>

@@ -15,7 +15,7 @@
     "outline": "outline.png"
   },
   "name": {
-    "short": "Nav-bar menu in personal tab.",
+    "short": "Nav-bar menu.",
     "full": "Nav-bar menu in personal tab."
   },
   "description": {
@@ -25,7 +25,7 @@
   "accentColor": "#FFFFFF",
   "configurableTabs": [
     {
-      "configurationUrl": "https://5cca-177-232-83-254.ngrok-free.app/meeting",
+      "configurationUrl": "https://5e11-179-49-30-3.ngrok-free.app/meeting",
       "canUpdateConfiguration": true,
       "scopes": [
         "groupchat",
@@ -35,23 +35,36 @@
         "meetingChatTab",
         "meetingDetailsTab",
         "meetingSidePanel"
+        
       ]
     }],
   "staticTabs": [
     {
-      "entityId": "index",
-      "name": "Personal Tab",
-      "contentUrl": "https://5cca-177-232-83-254.ngrok-free.app/tab",
-      "websiteUrl": "https://5cca-177-232-83-254.ngrok-free.app/tab",
+      "entityId": "transcript",
+      "name": "Transcriptions",
+      "contentUrl": "https://5e11-179-49-30-3.ngrok-free.app/transcript",
+      "websiteUrl": "https://5e11-179-49-30-3.ngrok-free.app/transcript",
       "scopes": [
         "personal",
         "team"
       ],
-      "context": ["channelTab", "personalTab" ]
+      "context": ["channelTab", "personalTab"]
+    },
+    {
+      "entityId": "settings",
+      "name": "Settings",
+      "contentUrl": "https://5e11-179-49-30-3.ngrok-free.app/tab",
+      "websiteUrl": "https://5e11-179-49-30-3.ngrok-free.app/tab",
+      "scopes": [
+        "personal",
+        "team"
+      ],
+      "context": ["channelTab", "personalTab"]
     }
+    
   ],
   "validDomains": [
-    "https://5cca-177-232-83-254.ngrok-free.app"
+    "https://5e11-179-49-30-3.ngrok-free.app"
   ],
   "devicePermissions": [
     "openExternal",
